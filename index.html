@@ -71,6 +71,9 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
 /* Right col: First 3 label + Joker */
 .card-joker-col{width:64px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px 8px 4px 2px;position:relative;gap:3px;}
 .first3-label{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;color:#999;letter-spacing:.5px;}
+.jstat{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;line-height:1;text-align:center;min-height:11px;}
+.jstat-a{color:var(--andar);}
+.jstat-b{color:var(--bahar);}
 .joker-slot{width:42px;height:56px;border-radius:6px;background:transparent;position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
 /* WIN RIBBON overlaying winning row */
@@ -119,6 +122,7 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
 .joker-card.joker-first3{animation:jokerF3 1s ease-in-out infinite;}
 @keyframes jokerF3{0%,100%{box-shadow:0 0 14px rgba(255,215,0,0.4);}50%{box-shadow:0 0 24px rgba(100,160,255,0.9),0 0 10px #a0c0ff;border-color:#a0c0ff;}}
 .joker-card.card-dim::after{content:'';position:absolute;inset:0;border-radius:6px;background:rgba(0,0,0,0.65);z-index:10;animation:dimFadeIn .4s ease forwards;}
+.pcard.fade-out,.joker-card.fade-out{transition:opacity .55s ease;opacity:0!important;}
 
 /* ══════ BET AREA ══════ */
 .bet-area{flex:1;min-height:0;display:flex;flex-direction:column;padding:4px 8px 2px;gap:3px;overflow:hidden;}
@@ -167,10 +171,13 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
 .mb-stats{position:absolute;top:6px;left:12px;display:flex;align-items:center;gap:6px;z-index:4;}
 .mb-pct{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;color:#ccc;border:1px solid rgba(255,255,255,0.15);border-radius:4px;padding:1px 4px;background:rgba(0,0,0,0.3);}
 .mb-users{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;color:#aaa;display:flex;align-items:center;gap:2px;}
-.mb-name{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;letter-spacing:1px;flex:1;align-self:flex-end;padding-bottom:6px;}
+.mb-stake{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;}
+.main-bet-andar .mb-stake{color:var(--andar);}
+.main-bet-bahar .mb-stake{color:var(--bahar);}
+.mb-name{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;letter-spacing:1px;flex:1;}
 .main-bet-andar .mb-name{color:var(--andar);}
 .main-bet-bahar .mb-name{color:var(--bahar);}
-.mb-odds{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;opacity:.7;align-self:flex-end;padding-bottom:6px;}
+.mb-odds{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;opacity:.7;}
 .bet-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.82);border-radius:9px;padding:2px 8px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:900;color:var(--gold);border:1.5px solid rgba(255,215,0,0.4);z-index:210;display:none;backdrop-filter:blur(3px);white-space:nowrap;}
 .main-bet.cta.main-bet-andar::before{animation:ctaA 1.2s ease-in-out infinite;}
 .main-bet.cta.main-bet-bahar::before{animation:ctaB 1.2s ease-in-out infinite;}
@@ -184,9 +191,13 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
 .sub-bet:active{transform:scale(.94);}
 .sub-bet.has-bet{border-color:rgba(255,215,0,0.4)!important;}
 .sub-bet-name{font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;text-align:center;color:#ccc;letter-spacing:.3px;}
-.sub-bet-odds{font-size:9px;color:var(--gold);font-weight:700;}
-.f3-odds{display:flex;gap:5px;}
-.f3-odds span{font-size:8px;color:var(--gold);font-weight:700;}
+.sub-bet-odds{font-size:11px;color:var(--gold);font-weight:700;}
+.f3-odds{display:flex;gap:3px;flex-wrap:wrap;justify-content:center;}
+.f3-box{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;color:var(--gold);padding:1px 4px;border-radius:4px;border:1px solid transparent;background:rgba(255,255,255,0.05);line-height:1.1;}
+.f3-box.bonus{background:linear-gradient(135deg,#ffd24d,#e0a000);color:#3a2a00;border-color:var(--gold);box-shadow:0 0 6px rgba(255,200,0,0.4);}
+.f3-box.f3-hit-flush{background:#12452a;color:#7dffb0;border-color:#40e080;box-shadow:0 0 8px rgba(64,224,128,0.5);}
+.f3-box.f3-hit-straight{background:#13294f;color:#8fbcff;border-color:#3b82f6;box-shadow:0 0 8px rgba(59,130,246,0.5);}
+.f3-box.f3-hit-sf{background:#4a1330;color:#ff9ccb;border-color:#ff5aa0;box-shadow:0 0 8px rgba(255,90,160,0.5);}
 .sub-bet .bet-badge{font-size:7px;padding:1px 4px;border-radius:6px;}
 .sub-bet.cta-sub::before{animation:ctaSub 1.2s ease-in-out infinite;}
 @keyframes ctaSub{0%,100%{border-color:rgba(255,215,0,0.06);}50%{border-color:rgba(255,215,0,0.55);box-shadow:0 0 10px rgba(255,215,0,0.12);}}
@@ -225,7 +236,6 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
 @keyframes bonusPop{0%{transform:translate(-50%,-50%) scale(0) rotate(-40deg);}70%{transform:translate(-50%,-50%) scale(1.15) rotate(-4deg);}100%{transform:translate(-50%,-50%) scale(1) rotate(-8deg);}}
 /* zone showing bonus odds pill */
 .odds-bonus{background:linear-gradient(135deg,#ffd24d,#e0a000);color:#3a2a00!important;border:1.5px solid var(--gold);border-radius:5px;padding:1px 6px;font-weight:900!important;box-shadow:0 0 8px rgba(255,200,0,0.45);}
-.f3-odds.odds-bonus span{color:#3a2a00;}
 
 /* Win/Dim */
 .main-bet.win::before,.sub-bet.win::before,.side-bet.win::before,.color-bet.win::before{border-color:#FFD700!important;box-shadow:0 0 22px rgba(255,215,0,0.4)!important;animation:none!important;}
@@ -308,7 +318,7 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
 .rules-body .highlight{color:var(--gold);font-weight:700;}
 .rules-body .blue{color:var(--andar);}
 .rules-body .red{color:var(--bahar);}
-.bot-icon{position:absolute;top:-28px;left:4px;z-index:20;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#4a90d9,#2a60a9);border:2px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 2px 6px rgba(0,0,0,0.4);cursor:default;}
+.bot-icon{position:absolute;top:39px;left:10px;z-index:40;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#4a90d9,#2a60a9);border:2px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 2px 6px rgba(0,0,0,0.4);cursor:default;}
 .bot-icon.bounce{animation:botBounce .3s ease;}
 @keyframes botBounce{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
 </style>
@@ -326,8 +336,8 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
       <span class="hdr-t">ANDAR BAHAR</span>
     </div>
     <div style="display:flex;align-items:center;gap:3px;">
-      <button class="ch-btn disabled" id="ch-result" onclick="cheatDisabled()">Cheat: OFF</button>
-      <button class="ch-btn disabled" id="ch-f3" onclick="cheatDisabled()">F3</button>
+      <button class="ch-btn" id="ch-bonus" onclick="toggleBonusCheat()">Bonus</button>
+      <button class="ch-btn" id="ch-f3" onclick="cycleF3Cheat()">F3: OFF</button>
       <button class="ch-btn" id="ch-bot" onclick="toggleBot()">Bot</button>
     </div>
     <div class="hdr-right">
@@ -335,6 +345,7 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
       <div class="hdr-btn">☰</div>
     </div>
   </div>
+  <div class="bot-icon" id="bot-icon" style="display:none;">🤖</div>
 
   <!-- CARD AREA -->
   <div class="card-area" id="card-area">
@@ -367,17 +378,19 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
         <div class="win-ribbon bahar" id="ribbon-bahar"><div class="ribbon-body">BAHAR</div></div>
       </div>
     </div>
-    <!-- Joker + First 3 label -->
+    <!-- Joker + First 3 label + per-card win stats -->
     <div class="card-joker-col">
       <div class="first3-label">First 3</div>
+      <div class="jstat jstat-a" id="jstat-a"></div>
       <div class="joker-slot" id="joker-slot"></div>
+      <div class="jstat jstat-b" id="jstat-b"></div>
     </div>
   </div>
 
   <!-- BET AREA -->
   <div class="bet-area">
     <!-- Roadmap mini (tap to expand full) -->
-    <div class="rmap-mini" id="rmap-mini" onclick="openFullRoad()">
+    <div class="rmap-mini" id="rmap-mini" onclick="openFullRoad(event)">
       <div class="rmap-canvas" id="mini-canvas"></div>
     </div>
 
@@ -385,13 +398,13 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
       <!-- main bets -->
       <div class="bet-block1">
         <div class="main-bet main-bet-andar cta" data-bk="main_andar" onclick="placeBet('main_andar',this)">
-          <div class="mb-stats"><span class="mb-pct" id="pctc-andar">0%</span><span class="mb-users">👤 <span id="usr-andar">0</span></span></div>
+          <div class="mb-stats"><span class="mb-pct" id="pctc-andar">0%</span><span class="mb-users">👤 <span id="usr-andar">0</span></span><span class="mb-stake">$ <span id="stk-andar">0</span></span></div>
           <span class="mb-name">ANDAR</span><span class="mb-odds" id="odds-main_andar">1:1.9</span>
           <div class="bet-badge"></div>
           <div class="bonus-badge" id="bonus-main_andar"><span class="bx">2x</span><span class="bt">Bonus</span></div>
         </div>
         <div class="main-bet main-bet-bahar cta" data-bk="main_bahar" onclick="placeBet('main_bahar',this)">
-          <div class="mb-stats"><span class="mb-pct" id="pctc-bahar">0%</span><span class="mb-users">👤 <span id="usr-bahar">0</span></span></div>
+          <div class="mb-stats"><span class="mb-pct" id="pctc-bahar">0%</span><span class="mb-users">👤 <span id="usr-bahar">0</span></span><span class="mb-stake">$ <span id="stk-bahar">0</span></span></div>
           <span class="mb-name">BAHAR</span><span class="mb-odds" id="odds-main_bahar">1:2</span>
           <div class="bet-badge"></div>
           <div class="bonus-badge" id="bonus-main_bahar"><span class="bx">2x</span><span class="bt">Bonus</span></div>
@@ -435,9 +448,7 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
       </div>
 
       <!-- side bets -->
-      <div class="bet-block3" id="side-bet-grid">
-        <div class="bot-icon" id="bot-icon" style="display:none;">🤖</div>
-      </div>
+      <div class="bet-block3" id="side-bet-grid"></div>
     </div>
   </div>
 
@@ -469,7 +480,7 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
   </div>
 
   <!-- Roadmap full overlay (covers Bahar area; does not push tiles) -->
-  <div class="rmap-full" id="rmap-full" onclick="onFullRoadClick(event)">
+  <div class="rmap-full" id="rmap-full" onclick="roadInsideClick(event)">
     <div class="rmap-pct">
       <span class="rmap-pct-lbl a">ANDAR</span>
       <div class="rmap-pct-bar">
@@ -501,8 +512,16 @@ html,body{width:100%;height:100%;font-family:'Rajdhani',sans-serif;background:#0
 
 <script>
 const RULES={
-  rules:`<h3>How to Play</h3>52-card deck. A <span class="highlight">middle card (Joker)</span> is revealed first.<br><b>Deal order</b> depends on Joker color: <span class="blue">black → Andar first</span>, <span class="red">red → Bahar first</span>.<br><b>1. Place Bet</b> (~11s).<br><b>2. Deal</b> — alternating until Joker rank appears.<br><b>3. Result</b> — the side receiving that card wins.<h3>Hedge</h3>One main bet & one 1st bet per round.`,
-  payout:`<h3>Main Bet (side dealt first / second)</h3><table class="pay-table"><tr><td>Dealt first</td><td class="gold">1:1.9</td></tr><tr><td>Dealt second</td><td class="gold">1:2</td></tr></table><h3>1st Card</h3><table class="pay-table"><tr><td>1st (first side)</td><td class="gold">1:16</td></tr><tr><td>1st (second side)</td><td class="gold">1:16.5</td></tr></table><h3>Color Bet</h3><table class="pay-table"><tr><td>Same Color</td><td class="gold">1:2.9</td></tr><tr><td>Different Color</td><td class="gold">1:1.45</td></tr></table><h3>First 3</h3><span class="highlight">Middle + 1st Andar + 1st Bahar</span><table class="pay-table"><tr><td>Flush</td><td class="gold">1:6</td></tr><tr><td>Straight</td><td class="gold">1:9</td></tr><tr><td>Straight Flush</td><td class="gold">1:121</td></tr></table><h3>Card Count</h3><table class="pay-table"><tr><td>1–5</td><td class="gold">1:3.5</td></tr><tr><td>6–10</td><td class="gold">1:4.4</td></tr><tr><td>11–15</td><td class="gold">1:5.6</td></tr><tr><td>16–20</td><td class="gold">1:7.5</td></tr><tr><td>21–25</td><td class="gold">1:10.5</td></tr><tr><td>26–30</td><td class="gold">1:15.5</td></tr><tr><td>31–35</td><td class="gold">1:25.5</td></tr><tr><td>36–40</td><td class="gold">1:50</td></tr><tr><td>41–45</td><td class="gold">1:121</td></tr><tr><td>46–49</td><td class="gold">1:850</td></tr></table><h3>2x Bonus</h3>Randomly appears on zones before dealing — doubles that zone's net payout.`
+  rules:`<h3>Overview</h3>Standard 52-card deck. A <span class="highlight">middle card</span> is revealed first. Its color sets the deal order: <span class="blue">black → Andar dealt first</span>, <span class="red">red → Bahar dealt first</span>.
+<h3>Round Flow</h3>1. Middle card is shown.<br>2. Place your bets (~11s).<br>3. Cards are dealt alternately, starting with the side set by the middle card's color, until a card matching the middle card's rank appears.<br>4. The side that receives the matching card wins.
+<h3>Hedge Limit</h3>One main bet (Andar <b>or</b> Bahar) and one 1st bet (1st Andar <b>or</b> 1st Bahar) per round.
+<h3>2x Bonus</h3>Before dealing, a <span class="highlight">2x</span> icon may randomly land on some zones and double that zone's payout for the round (for First 3 it applies to every winning combination).`,
+  payout:`<div style="font-size:10px;color:#777;margin-bottom:6px">Odds shown include your stake. Andar/Bahar and 1st odds depend on which side is dealt first.</div>
+<h3>Main Bet</h3><table class="pay-table"><tr><td>Side dealt first</td><td class="gold">1:1.9</td></tr><tr><td>Side dealt second</td><td class="gold">1:2</td></tr></table>
+<h3>1st Card</h3><span style="font-size:11px">The matching card is that side's very first card.</span><table class="pay-table"><tr><td>1st — first side</td><td class="gold">1:16</td></tr><tr><td>1st — second side</td><td class="gold">1:16.5</td></tr></table>
+<h3>Color Bet</h3><span style="font-size:11px">Winning card color vs middle card.</span><table class="pay-table"><tr><td>Same Color</td><td class="gold">1:2.9</td></tr><tr><td>Different Color</td><td class="gold">1:1.45</td></tr></table>
+<h3>First 3</h3><span class="highlight">Middle + 1st Andar + 1st Bahar</span><table class="pay-table"><tr><td>Flush</td><td class="gold">1:6</td></tr><tr><td>Straight</td><td class="gold">1:9</td></tr><tr><td>Straight Flush</td><td class="gold">1:121</td></tr></table>
+<h3>Card Count (cards dealt)</h3><table class="pay-table"><tr><td>1–5</td><td class="gold">1:3.5</td></tr><tr><td>6–10</td><td class="gold">1:4.4</td></tr><tr><td>11–15</td><td class="gold">1:5.6</td></tr><tr><td>16–20</td><td class="gold">1:7.5</td></tr><tr><td>21–25</td><td class="gold">1:10.5</td></tr><tr><td>26–30</td><td class="gold">1:15.5</td></tr><tr><td>31–35</td><td class="gold">1:25.5</td></tr><tr><td>36–40</td><td class="gold">1:50</td></tr><tr><td>41–45</td><td class="gold">1:121</td></tr><tr><td>46–49</td><td class="gold">1:850</td></tr></table>`
 };
 function openRules(){document.getElementById('rules-overlay').classList.add('open');switchTab('rules');}
 function closeRules(){document.getElementById('rules-overlay').classList.remove('open');}
@@ -538,7 +557,7 @@ const CARD_W=36, CARD_SHOW=13;
 
 // Timing
 const BET_SECS=10;               // timer counts 10 -> 0 (11s betting)
-const T_JOKER=500, T_NEWROUND=1500, T_LOCK_DELAY=1000;
+const T_JOKER=500, T_NEWROUND=1500, T_LOCK_DELAY=1000, T_MIDDLE=400, PREP_MS=950;
 const T_RES_TOAST=1000, T_RES_LIGHT=2000, T_RES_PAY=1000, T_RES_COLLECT=1000;
 function dealDelay(n){ if(n<=6)return 800; if(n<=15)return 500; return 300; } // n = card number (1-based)
 
@@ -552,6 +571,8 @@ let phase='idle',rafId=null,timerStart=0,timerDur=0;
 let deck=[],joker=null,andarCards=[],baharCards=[],firstSide='andar';
 let roadmap=[],botOn=false,botBetTimers=[],botBets={};
 let dealTimeout=null,first3Active=false,bonusZones=new Set();
+let cheatBonus=false,cheatF3mode=null,oddsRevealed=false,first3Hit=null;
+let jokerStats={};                              // per-card { 'rank+suit': {a,b} } all-time tally
 let mainStake={andar:0,bahar:0},mainUsers={andar:new Set(),bahar:new Set()};
 let roadPage=0; // 0 bead, 1 bigroad, 2 numbered
 const RING_C=2*Math.PI*19;
@@ -588,6 +609,19 @@ function showJokerCard(){
   jc.innerHTML=`<div class="cr">${joker.rank}</div><div class="cs">${joker.suit}</div>`;
   slot.appendChild(jc);
 }
+// Per-Joker historical win %: filter all-time rounds with this exact rank+suit
+function updJokerStats(){
+  const ea=document.getElementById('jstat-a'),eb=document.getElementById('jstat-b');
+  if(!ea||!eb)return;
+  if(!joker||!oddsRevealed){ea.textContent='';eb.textContent='';return;}
+  const s=jokerStats[joker.rank+joker.suit]||{a:0,b:0};
+  const total=s.a+s.b;
+  let pa,pb;
+  if(total<5){pa=50;pb=50;}                     // insufficient data (<5) -> default 50/50
+  else{pa=Math.round(s.a/total*100);pb=100-pa;} // sum always 100
+  ea.textContent=pa+'%';eb.textContent=pb+'%';
+}
+function hideJokerStats(){const ea=document.getElementById('jstat-a'),eb=document.getElementById('jstat-b');if(ea)ea.textContent='';if(eb)eb.textContent='';}
 
 // ── PAYOUT ODDS (net) ─────────────────────────
 function zoneNet(k){
@@ -606,21 +640,31 @@ function zoneNet(k){
 function fmtGross(net){const g=net+1;return Number.isInteger(g)?g:(Math.round(g*100)/100);}
 // Update all odds labels (gross = net+1). Bonus zones show doubled gross.
 function updOdds(){
-  const single=['main_andar','main_bahar','sub_1st_andar','sub_1st_bahar','color_same','color_diff',...SIDE_BETS.map(s=>s.k)];
-  single.forEach(k=>{
+  const orderZones=['main_andar','main_bahar','sub_1st_andar','sub_1st_bahar'];
+  const otherSingle=['color_same','color_diff',...SIDE_BETS.map(s=>s.k)];
+  const paint=(k)=>{
     const el=document.getElementById('odds-'+k);if(!el)return;
-    const net=zoneNet(k);const bon=bonusZones.has(k);
-    const g=fmtGross(bon?net*2:net);
-    el.textContent='1:'+g;
+    const net=zoneNet(k),bon=bonusZones.has(k);
+    el.textContent='1:'+fmtGross(bon?net*2:net);
     el.classList.toggle('odds-bonus',bon);
+  };
+  // main + 1st: blank until the middle card (joker) is revealed
+  orderZones.forEach(k=>{
+    const el=document.getElementById('odds-'+k);if(!el)return;
+    if(!oddsRevealed){el.textContent='';el.classList.remove('odds-bonus');return;}
+    paint(k);
   });
-  // first3 (three combos)
+  otherSingle.forEach(paint);
   const f3=document.getElementById('odds-sub_first3');
   if(f3){
-    const bon=bonusZones.has('sub_first3');const m=bon?2:1;
-    const sf=fmtGross(NET.f3.sf*m),st=fmtGross(NET.f3.straight*m),fl=fmtGross(NET.f3.flush*m);
-    f3.innerHTML=`<span>SF ${sf}</span><span>St ${st}</span><span>Fl ${fl}</span>`;
-    f3.classList.toggle('odds-bonus',bon);
+    const bon=bonusZones.has('sub_first3'),m=bon?2:1;
+    const boxes=[
+      {c:'sf',t:'SF '+fmtGross(NET.f3.sf*m)},
+      {c:'straight',t:'St '+fmtGross(NET.f3.straight*m)},
+      {c:'flush',t:'Fl '+fmtGross(NET.f3.flush*m)}
+    ];
+    f3.classList.remove('odds-bonus');   // per-box styling now
+    f3.innerHTML=boxes.map(b=>`<span class="f3-box${bon?' bonus':''}${first3Hit===b.c?' f3-hit-'+b.c:''}" data-combo="${b.c}">${b.t}</span>`).join('');
   }
 }
 
@@ -641,6 +685,7 @@ function checkAndShowFirst3(){
   if(andarCards.length<1||baharCards.length<1)return;
   const res=calcFirst3();first3Active=!!res;
   if(!res)return;
+  first3Hit=res;updOdds();               // color the winning combo's payout box
   document.querySelector('#joker-slot .joker-card')?.classList.add('joker-first3');
   document.querySelector('#first-andar .pcard')?.classList.add('first3-glow');
   document.querySelector('#first-bahar .pcard')?.classList.add('first3-glow');
@@ -683,8 +728,7 @@ function highlightRange(n){
 // ── SIDE BET GRID ─────────────────────────────
 function buildSideBetGrid(){
   const grid=document.getElementById('side-bet-grid');
-  const bi=document.getElementById('bot-icon');
-  grid.innerHTML='';grid.appendChild(bi);
+  grid.innerHTML='';
   SIDE_BETS.forEach(sb=>{
     const el=document.createElement('div');
     el.className='side-bet cta-side';el.dataset.bk=sb.k;
@@ -753,6 +797,8 @@ function updMainStats(){
   document.getElementById('pctc-bahar').textContent=(tot>0?pb:0)+'%';
   document.getElementById('usr-andar').textContent=mainUsers.andar.size;
   document.getElementById('usr-bahar').textContent=mainUsers.bahar.size;
+  document.getElementById('stk-andar').textContent=mainStake.andar.toLocaleString();
+  document.getElementById('stk-bahar').textContent=mainStake.bahar.toLocaleString();
 }
 function resetMainStats(){mainStake={andar:0,bahar:0};mainUsers={andar:new Set(),bahar:new Set()};updMainStats();}
 
@@ -864,8 +910,42 @@ function rafTimer(){
 }
 function stopTmr(){if(rafId){cancelAnimationFrame(rafId);rafId=null;}showTimerRing(false);}
 
-// ── CHEAT (disabled) ──────────────────────────
-function cheatDisabled(){notify('Cheat disabled (demo)');}
+// ── CHEAT ─────────────────────────────────────
+function toggleBonusCheat(){
+  cheatBonus=!cheatBonus;
+  document.getElementById('ch-bonus').classList.toggle('on',cheatBonus);
+  notify(cheatBonus?'Bonus cheat ON (guaranteed)':'Bonus cheat OFF');
+}
+const F3_MODES=[null,'flush','straight','sf'];
+const F3_LABEL={'null':'F3: OFF',flush:'F3: FLUSH',straight:'F3: STR',sf:'F3: SF'};
+function cycleF3Cheat(){
+  const i=F3_MODES.indexOf(cheatF3mode);
+  cheatF3mode=F3_MODES[(i+1)%F3_MODES.length];
+  const btn=document.getElementById('ch-f3');
+  btn.textContent=F3_LABEL[String(cheatF3mode)];
+  btn.classList.toggle('on',!!cheatF3mode);
+  notify(cheatF3mode?('First3 forced: '+cheatF3mode.toUpperCase()):'First3 cheat OFF');
+}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+// Returns [joker, firstSideFirstCard, otherSideFirstCard] forming the combo
+function buildF3Cards(mode){
+  const rIdx=[...Array(13).keys()];
+  if(mode==='flush'){
+    const s=pick(SUITS);let r=[0,2,5];
+    for(let t=0;t<60;t++){
+      const sh=[...rIdx].sort(()=>Math.random()-0.5).slice(0,3).sort((a,b)=>a-b);
+      if(!(sh[2]-sh[0]===2&&sh[1]-sh[0]===1)){r=sh;break;}   // avoid straight (would be SF)
+    }
+    return [{rank:RANKS[r[0]],suit:s},{rank:RANKS[r[1]],suit:s},{rank:RANKS[r[2]],suit:s}];
+  }
+  if(mode==='straight'){
+    const x=Math.floor(Math.random()*11),run=[x,x+1,x+2];    // suits not all same -> not flush
+    return [{rank:RANKS[run[0]],suit:SUITS[0]},{rank:RANKS[run[1]],suit:SUITS[1]},{rank:RANKS[run[2]],suit:SUITS[0]}];
+  }
+  // straight flush
+  const x=Math.floor(Math.random()*11),run=[x,x+1,x+2],s=pick(SUITS);
+  return [{rank:RANKS[run[0]],suit:s},{rank:RANKS[run[1]],suit:s},{rank:RANKS[run[2]],suit:s}];
+}
 
 // ── BOT (virtual users) ───────────────────────
 let botMainUsers={andar:new Set(),bahar:new Set()};
@@ -904,9 +984,10 @@ function doBotBets(){
 // ── 2x BONUS ──────────────────────────────────
 function rollBonus(){
   bonusZones=new Set();
-  if(Math.random()>BONUS_ROUND_CHANCE)return;
+  if(!cheatBonus && Math.random()>BONUS_ROUND_CHANCE)return;   // cheat = always bonus
   const pool=[...ALL_ZONE_KEYS];
-  const count=BONUS_MIN+Math.floor(Math.random()*(BONUS_MAX-BONUS_MIN+1));
+  let count=BONUS_MIN+Math.floor(Math.random()*(BONUS_MAX-BONUS_MIN+1));
+  if(cheatBonus)count=Math.max(count,1);
   for(let i=0;i<count&&pool.length;i++){
     const idx=Math.floor(Math.random()*pool.length);
     bonusZones.add(pool.splice(idx,1)[0]);
@@ -925,20 +1006,31 @@ function clearBonusBadges(){hideBonusIcons();}
 
 // ── ROADMAP ───────────────────────────────────
 let roadFull=false;
-function openFullRoad(){roadFull=true;document.getElementById('rmap-full').classList.add('show');positionFullRoad();renderRoadmap();}
+function openFullRoad(e){if(e)e.stopPropagation();roadFull=true;document.getElementById('rmap-full').classList.add('show');positionFullRoad();renderRoadmap();}
 function closeFullRoad(){roadFull=false;document.getElementById('rmap-full').classList.remove('show');}
-function onFullRoadClick(e){if(e&&e.target.closest('.rmap-arrow'))return;closeFullRoad();}
+function roadInsideClick(e){                   // tap inside full = next page
+  if(e.target.closest('.rmap-arrow'))return;   // arrows handle their own direction
+  e.stopPropagation();
+  roadPage=(roadPage+1)%3;renderRoadmap();
+}
 function cycleRoadPage(d,e){if(e)e.stopPropagation();roadPage=(roadPage+d+3)%3;renderRoadmap();}
 function positionFullRoad(){
   const app=document.getElementById('app').getBoundingClientRect();
   const mini=document.getElementById('rmap-mini').getBoundingClientRect();
-  const bahar=document.getElementById('card-row-bahar').getBoundingClientRect();
+  const joker=document.getElementById('joker-slot').getBoundingClientRect();
   const f=document.getElementById('rmap-full');
   f.style.left=(mini.left-app.left)+'px';
   f.style.width=mini.width+'px';
-  f.style.top=(bahar.top-app.top)+'px';                 // grow up to cover Bahar row
-  f.style.height=Math.max(70,(mini.bottom-bahar.top))+'px';
+  f.style.top=(joker.bottom-app.top+3)+'px';       // just below joker, without covering it
+  f.style.bottom=(app.bottom-mini.bottom)+'px';    // down to the mini strip
+  f.style.height='auto';
 }
+// tap on the top card area closes the full panel; tapping the bet tiles does NOT
+document.addEventListener('click',e=>{
+  if(!roadFull)return;
+  if(e.target.closest('#rmap-full'))return;              // inside panel -> page change
+  if(e.target.closest('#card-area'))closeFullRoad();     // only the dealing area closes it
+});
 function updWinPct(){
   const last=roadmap.slice(-100);
   const a=last.filter(r=>r.winner==='andar').length,tot=last.length;
@@ -1026,7 +1118,7 @@ function startRound(){
   botBetTimers.forEach(clearTimeout);botBetTimers=[];
   stopTmr();
   phase='idle';betHist=[];botBets={};bonusZones=new Set();
-  andarCards=[];baharCards=[];first3Active=false;
+  andarCards=[];baharCards=[];first3Active=false;first3Hit=null;
   resetMainStats();
   document.querySelectorAll('.placed-chip,.bot-chip,.player-chip,.fly-chip').forEach(e=>e.remove());
   document.querySelectorAll('.win,.win-outline,.dim').forEach(e=>e.classList.remove('win','win-outline','dim'));
@@ -1038,26 +1130,40 @@ function startRound(){
   if(dealTimeout)clearTimeout(dealTimeout);
   setCenterStatus('Wait For Next Round');showTimerRing(false);
   closeFullRoad();
-
-  // Phase 1a: Deal Middle Card (0.5s) — reveal joker, set deal order + payouts
-  deck=shuffle(buildDeck());
-  joker=deck.pop();
-  firstSide=isRed(joker)?'bahar':'andar';   // black -> Andar first, red -> Bahar first
-  showJokerCard();
-  updOdds();
+  oddsRevealed=false;updOdds();          // no Andar/Bahar/1st payouts until joker is revealed
+  hideJokerStats();
   updBD();
 
+  // Phase 1a: Deal Middle Card — short beat first (so "no payout" is visible), then reveal joker
   setTimeout(()=>{
-    // Phase 1b: NEW ROUND indicator (1.5s)
-    showT('nr',`<div class="tt" style="color:var(--bahar);font-size:22px;letter-spacing:2px">NEW ROUND</div>`,T_NEWROUND,()=>{
-      // Phase 1c: Betting (timer 10->0)
-      phase='betting';updPh();setCTA(true);
-      setCenterStatus('Place Your Bet !');
-      openFullRoad();
-      startTmr();
-      setTimeout(doBotBets,500+Math.random()*1500);
-    });
-  },T_JOKER);
+    deck=shuffle(buildDeck());
+    if(cheatF3mode){
+      const three=buildF3Cards(cheatF3mode);
+      three.forEach(c=>{const i=deck.findIndex(d=>d.rank===c.rank&&d.suit===c.suit);if(i>=0)deck.splice(i,1);});
+      joker=three[0];
+      firstSide=isRed(joker)?'bahar':'andar';
+      deck.push(three[2]);               // 2nd pop -> other side's first card
+      deck.push(three[1]);               // 1st pop -> first side's first card
+    } else {
+      joker=deck.pop();
+      firstSide=isRed(joker)?'bahar':'andar';   // black -> Andar first, red -> Bahar first
+    }
+    showJokerCard();
+    oddsRevealed=true;updOdds();         // now the deal order is known -> show payouts
+    updJokerStats();                     // per-card historical win % around the joker
+
+    setTimeout(()=>{
+      // Phase 1b: NEW ROUND indicator (1.5s)
+      showT('nr',`<div class="tt" style="color:var(--bahar);font-size:22px;letter-spacing:2px">NEW ROUND</div>`,T_NEWROUND,()=>{
+        // Phase 1c: Betting (timer 10->0)
+        phase='betting';updPh();setCTA(true);
+        setCenterStatus('Place Your Bet !');
+        openFullRoad();
+        startTmr();
+        setTimeout(doBotBets,500+Math.random()*1500);
+      });
+    },T_JOKER);
+  },T_MIDDLE);
 }
 
 function lock(){
@@ -1090,6 +1196,13 @@ function dealNextCard(idx){
 function endRound(winner,totalDealt){
   phase='result';updPh();
   roadmap.push({winner,cards:totalDealt});if(roadmap.length>130)roadmap.shift();
+  if(winner){
+    const jk=joker.rank+joker.suit;
+    if(!jokerStats[jk])jokerStats[jk]={a:0,b:0};
+    const st=jokerStats[jk];
+    st[winner==='andar'?'a':'b']++;
+    if(st.a+st.b>=200){st.a=Math.round(st.a/2);st.b=Math.round(st.b/2);}  // cap: halve, keep recent ratio
+  }
   renderRoadmap();
 
   const f3Result=calcFirst3();
@@ -1118,6 +1231,10 @@ function endRound(winner,totalDealt){
       tot+=w;winners.push(k);
     }
   }
+
+  // #3: bonus zones that LOST revert to normal payout display (keep gold only on winners)
+  bonusZones=new Set([...bonusZones].filter(k=>winners.includes(k)));
+  updOdds();
 
   // Phase 3a: toast (1s)
   const wCls=winner==='andar'?'andar-win':'bahar-win';
@@ -1165,7 +1282,17 @@ function showWinFloat(amount){
   app.appendChild(el);setTimeout(()=>el.remove(),1700);
 }
 
-function prep(){bets={};botBets={};updBD();updRebet();clearBonusBadges();setTimeout(startRound,400);}
+function fadeOutCards(){document.querySelectorAll('.pcard,.joker-card').forEach(c=>c.classList.add('fade-out'));}
+function prep(){
+  phase='prep';
+  bets={};botBets={};updBD();updRebet();clearBonusBadges();
+  setCenterStatus('Wait For Next Round');
+  first3Hit=null;
+  oddsRevealed=false;updOdds();     // remove Andar/Bahar/1st payouts (next order unknown)
+  hideJokerStats();
+  fadeOutCards();                   // fade dealt cards out gradually
+  setTimeout(startRound,PREP_MS);
+}
 function showT(cls,html,dur,cb){const o=document.getElementById('tov'),b=document.getElementById('tbx');b.className='tbx '+cls;b.innerHTML=html;o.classList.add('vis');setTimeout(()=>{o.classList.remove('vis');if(cb)setTimeout(cb,150);},dur);}
 let nTo;function notify(t){const el=document.getElementById('notif');el.textContent=t;el.classList.add('show');clearTimeout(nTo);nTo=setTimeout(()=>el.classList.remove('show'),1500);}
 
